@@ -73,7 +73,7 @@ func sumThree(line []int) int {
 }
 
 func main() {
-	line := readFile("input.txt")
+	line := readFile(os.Args[1])
 	sort.Ints(line)
 
 	twoProduct := sumTwo(line)
