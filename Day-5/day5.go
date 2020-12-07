@@ -10,7 +10,7 @@ import (
 
 func readFile(filename string) []string {
 	lines := make([]string, 0)
-	file, err := os.Open(os.Args[1])
+	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
