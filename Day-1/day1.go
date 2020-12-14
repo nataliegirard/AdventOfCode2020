@@ -1,34 +1,12 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"os"
 	"sort"
 	"strconv"
 )
-
-func readFile(filename string) []int {
-	lines := make([]int, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		l := scanner.Text()
-		line, _ := strconv.Atoi(l)
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
-}
 
 func sumTwo(line []int) int {
 	bottom := 0
@@ -73,7 +51,12 @@ func sumThree(line []int) int {
 }
 
 func main() {
-	line := readFile(os.Args[1])
+	lines := utils.ReadFile(os.Args[1])
+	line := []int{}
+	for _, l := range lines {
+		n, _ := strconv.Atoi(l)
+		line = append(line, n)
+	}
 	sort.Ints(line)
 
 	twoProduct := sumTwo(line)

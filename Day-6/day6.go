@@ -1,31 +1,10 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"os"
 )
-
-func readFile(filename string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
-}
 
 func contains(s []string, e string) bool {
 	for _, a := range s {
@@ -47,7 +26,7 @@ func countGroup(choice map[string]int, num int) int {
 }
 
 func main() {
-	file := readFile(os.Args[1])
+	file := utils.ReadFile(os.Args[1])
 
 	answers := make([]string, 0)
 	count := 0

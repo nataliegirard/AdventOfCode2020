@@ -1,9 +1,8 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"math"
 	"os"
 	"regexp"
@@ -15,26 +14,6 @@ type Position struct {
 	x         int // East positive
 	y         int // North positive
 	direction int // E=0, S=1, W=2, N=3
-}
-
-func readFile(filename string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
 }
 
 func parseInstruction(ins string, position Position, waypoint Position, useWaypoint bool) (Position, Position) {
@@ -147,7 +126,7 @@ func parseInstruction(ins string, position Position, waypoint Position, useWaypo
 }
 
 func main() {
-	file := readFile(os.Args[1])
+	file := utils.ReadFile(os.Args[1])
 
 	position1 := Position{}
 	position2 := Position{}

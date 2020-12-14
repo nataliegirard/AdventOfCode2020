@@ -1,9 +1,8 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"math/big"
 	"os"
 	"strconv"
@@ -13,26 +12,6 @@ import (
 type schedule struct {
 	busNumber     int
 	nextDeparture int
-}
-
-func readFile(filename string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
 }
 
 /* Chinese Remainder Theorem
@@ -58,7 +37,7 @@ func crt(a, n []*big.Int) (*big.Int, error) {
 }
 
 func main() {
-	file := readFile(os.Args[1])
+	file := utils.ReadFile(os.Args[1])
 
 	arrivalTime, _ := strconv.Atoi(file[0])
 	buses := strings.Split(file[1], ",")

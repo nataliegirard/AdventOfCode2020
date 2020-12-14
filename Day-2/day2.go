@@ -1,34 +1,13 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
-
-func readFile(filename string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
-}
 
 func parseLine(line string) (int, int, string, string) {
 	re := regexp.MustCompile(`([0-9]+)-([0-9]+) ([a-z]): (.+)`)
@@ -53,7 +32,7 @@ func checkMatchComplex(min int, max int, char string, pword string) bool {
 }
 
 func main() {
-	file := readFile(os.Args[1])
+	file := utils.ReadFile(os.Args[1])
 
 	countSimple := 0
 	countComplex := 0

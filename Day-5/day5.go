@@ -1,32 +1,11 @@
 package main
 
 import (
-	"bufio"
+	"advent/utils"
 	"fmt"
-	"log"
 	"os"
 	"sort"
 )
-
-func readFile(filename string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	return lines
-}
 
 func parseLine(line string) int {
 	low := 0
@@ -58,7 +37,7 @@ func parseLine(line string) int {
 }
 
 func main() {
-	file := readFile(os.Args[1])
+	file := utils.ReadFile(os.Args[1])
 
 	max := 0
 	seats := make([]int, 0)
